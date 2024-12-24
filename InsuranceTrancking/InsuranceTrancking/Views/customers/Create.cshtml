@@ -9,40 +9,60 @@
 <body>
     <div class="container my-5">
         <h2>Create Customer</h2>
-        <form action="/customers/Create" method="post" class="needs-validation" novalidate>
+        <form action="/customers/CreateWithVehicle" method="post" class="needs-validation" novalidate>
+            <!-- Customer Information -->
             <div class="mb-3">
                 <label for="FirstName" class="form-label">First Name</label>
                 <input type="text" id="FirstName" name="FirstName" class="form-control" required />
                 <div class="invalid-feedback">Please provide a valid first name.</div>
             </div>
-
             <div class="mb-3">
                 <label for="LastName" class="form-label">Last Name</label>
                 <input type="text" id="LastName" name="LastName" class="form-control" required />
                 <div class="invalid-feedback">Please provide a valid last name.</div>
             </div>
-
             <div class="mb-3">
                 <label for="PhoneNumber" class="form-label">Phone Number</label>
                 <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control" required />
                 <div class="invalid-feedback">Please provide a valid phone number.</div>
             </div>
-
             <div class="mb-3">
                 <label for="Email" class="form-label">Email</label>
                 <input type="email" id="Email" name="Email" class="form-control" required />
                 <div class="invalid-feedback">Please provide a valid email.</div>
             </div>
-
             <div class="mb-3">
                 <label for="Address" class="form-label">Address</label>
                 <textarea id="Address" name="Address" class="form-control" rows="3" required></textarea>
                 <div class="invalid-feedback">Please provide an address.</div>
             </div>
 
-            <div class="form-check mb-3">
-                <input type="checkbox" id="IsAdmin" name="IsAdmin" class="form-check-input" />
-                <label for="IsAdmin" class="form-check-label">Is Admin</label>
+            <!-- Vehicle Information -->
+            <h3>Vehicle Information</h3>
+            <div class="mb-3">
+                <label for="Brand" class="form-label">Brand</label>
+                <input type="text" id="Brand" name="Vehicles[0].Brand" class="form-control" required />
+                <div class="invalid-feedback">Please provide a vehicle brand.</div>
+            </div>
+            <div class="mb-3">
+                <label for="VehicleID" class="form-label">Vehicle ID</label>
+                <input type="text" id="VehicleID" name="Vehicles[0].vehicleID" class="form-control" required />
+                <div class="invalid-feedback">Please provide a vehicle brand.</div>
+            </div>
+            <div class="mb-3">
+                <label for="Model" class="form-label">Model</label>
+                <input type="text" id="Model" name="Vehicles[0].Model" class="form-control" required />
+                <div class="invalid-feedback">Please provide a vehicle model.</div>
+            </div>
+            <div class="mb-3">
+                <label for="Year" class="form-label">Year</label>
+                <input type="number" id="Year" name="Vehicles[0].Year" class="form-control" required />
+                <div class="invalid-feedback">Please provide a vehicle year.</div>
+            </div>
+            <div class="mb-3">
+                <label for="CustomerClaimDate" class="form-label">Customer Claim Date</label>
+                <input type="date" id="CustomerClaimDate" name="Vehicles[0].CustomerClaimDate" class="form-control" required />
+                <div class="invalid-feedback">Please provide a claim date.</div>
             </div>
 
             <button type="submit" class="btn btn-primary">Create</button>
@@ -50,6 +70,5 @@
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  
 </body>
 </html>

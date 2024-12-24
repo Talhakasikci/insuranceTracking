@@ -1,12 +1,11 @@
-﻿using System;
+﻿using InsuranceTrancking.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using InsuranceTrancking.Models;
 
 namespace InsuranceTrancking.Controllers
 {
@@ -45,7 +44,7 @@ namespace InsuranceTrancking.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        
+
         public ActionResult Create([Bind(Include = "CustomerID,FirstName,LastName,PhoneNumber,Email,Address,IsAdmin")] customers customers)
         {
             if (ModelState.IsValid)
@@ -57,9 +56,35 @@ namespace InsuranceTrancking.Controllers
 
             return View(customers);
         }
+        [HttpPost]
+        public ActionResult CreateWithVehicle(customers customer, List<vehicles> vehicles)
+        {
+            if (ModelState.IsValid)
+            {
+                // Step 1: Add the customer to the database. CustomerID will be auto-generated.
+                db.customers.Add(customer);
+                db.SaveChanges();  // This will insert the customer and generate a CustomerID
+
+                // Step 2: Ensure vehicles are assigned to this customer
+                foreach (var vehicle in vehicles)
+                {
+                    vehicle.CustomerID = customer.CustomerID;  // Link vehicle to the newly created customer
+                    db.vehicles.Add(vehicle);
+                }
+
+                // Step 3: Save the vehicles
+                db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
+            return View(customer);  // If model is invalid, return the view
+        }
+
+
 
         // GET: customers/Edit/5
-        
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,7 +103,7 @@ namespace InsuranceTrancking.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        
+
         public ActionResult Edit([Bind(Include = "CustomerID,FirstName,LastName,PhoneNumber,Email,Address,IsAdmin")] customers customers)
         {
             if (ModelState.IsValid)
@@ -107,32 +132,69 @@ namespace InsuranceTrancking.Controllers
 
         // POST: customers/Delete/5
         [HttpPost, ActionName("Delete")]
-       // [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
+
+        // [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            customers customer = db.customers.Find(id);
-            vehicles vehicles = db.vehicles.Find(id);
-            insurance_policies insurance_Policies = db.insurance_policies.Find(id);
-            accident_reports accident = db.accident_reports.Find(id);
-            driving_license dl = db.driving_license.Find(id);
-            payments payments = db.payments.Find(id);
-            insurance_companies ic = db.insurance_companies.Find(id);
-            repair_shops repair_Shops = db.repair_shops.Find(id);
-            if (customer != null)
+            using (var transaction = db.Database.BeginTransaction())
             {
-                db.customers.Remove(customer);
-                db.vehicles.Remove(vehicles);
-                db.insurance_policies.Remove(insurance_Policies);
-                db.accident_reports.Remove(accident);
-                db.driving_license.Remove(dl);
-                db.payments.Remove(payments);
-                db.insurance_companies.Remove(ic);
-                db.repair_shops.Remove(repair_Shops);
+                try
+                {
+                    // Find the customer
+                    customers customer = db.customers.Find(id);
+                    if (customer == null)
+                    {
+                        return HttpNotFound();
+                    }
 
-                db.SaveChanges();
+                    // Delete related accident reports
+                    var vehicles = db.vehicles.Where(v => v.CustomerID == id).ToList();
+                    foreach (var vehicle in vehicles)
+                    {
+                        var accidentReports = db.accident_reports.Where(ar => ar.VehicleID == vehicle.VehicleID).ToList();
+                        db.accident_reports.RemoveRange(accidentReports);
+                    }
+
+                    // Delete related payments for policies
+                    var policies = db.insurance_policies.Where(p => p.CustomerID == id).ToList();
+                    foreach (var policy in policies)
+                    {
+                        var payments = db.payments.Where(pay => pay.PolicyID == policy.PolicyID).ToList();
+                        db.payments.RemoveRange(payments);
+                    }
+
+                    // Delete related insurance policies
+                    db.insurance_policies.RemoveRange(policies);
+
+                    // Delete related vehicles
+                    db.vehicles.RemoveRange(vehicles);
+
+                    // Delete related driving license
+                    var license = db.driving_license.FirstOrDefault(dl => dl.CustomerID == id);
+                    if (license != null)
+                    {
+                        db.driving_license.Remove(license);
+                    }
+
+                    // Delete the customer
+                    db.customers.Remove(customer);
+
+                    // Save changes and commit transaction
+                    db.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception)
+                {
+                    // Rollback transaction if an error occurs
+                    transaction.Rollback();
+                    throw;
+                }
             }
+
             return RedirectToAction("Index");
         }
+
 
         protected override void Dispose(bool disposing)
         {

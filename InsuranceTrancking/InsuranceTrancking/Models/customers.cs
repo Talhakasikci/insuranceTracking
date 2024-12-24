@@ -17,7 +17,7 @@ namespace InsuranceTrancking.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CustomerID { get; set; }
 
         [StringLength(255)]
