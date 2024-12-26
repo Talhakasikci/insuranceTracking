@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accident Report Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <h2>Details</h2>
+        <h4>Accident Report</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">Policy Number</dt>
+            <dd class="col-sm-9">@Model.insurance_policies.PolicyNumber</dd>
+
+            <dt class="col-sm-3">Shop Name</dt>
+            <dd class="col-sm-9">@Model.repair_shops.ShopName</dd>
+
+            <dt class="col-sm-3">Vehicle Brand</dt>
+            <dd class="col-sm-9">@Model.vehicles.Brand</dd>
+
+            <dt class="col-sm-3">Location</dt>
+            <dd class="col-sm-9">@Model.Location</dd>
+        </dl>
+        <p>
+            <a href="/accident_reports/Edit/@Model.ReportID" class="btn btn-warning">Edit</a>
+            <a href="/accident_reports/Index" class="btn btn-secondary">Back to List</a>
+        </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

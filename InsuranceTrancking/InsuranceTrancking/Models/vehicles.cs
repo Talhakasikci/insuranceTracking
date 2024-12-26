@@ -24,10 +24,14 @@ namespace InsuranceTrancking.Models
 
         [StringLength(100)]
         public string Model { get; set; }
+        //[StringLength(50)]
+       // public string Model1 { get; set; }
 
         public int? Year { get; set; }
 
         public int? CustomerID { get; set; }
+        [StringLength(50)]
+        public string Plate { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? CustomerClaimDate { get; set; }

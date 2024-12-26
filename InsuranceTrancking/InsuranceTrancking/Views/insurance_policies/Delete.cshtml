@@ -1,80 +1,44 @@
-﻿@model InsuranceTrancking.Models.insurance_policies
+﻿
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Insurance Policy";
 }
 
 <h2>Delete</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this insurance policy?</h3>
 <div>
-    <h4>insurance_policies</h4>
+    <h4>Insurance Policy Details</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.customers.FirstName)
-        </dt>
+        <dt>Policy Number:</dt>
+        <dd>@Model.PolicyNumber</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.customers.FirstName)
-        </dd>
+        <dt>Start Date:</dt>
+        <dd>@Model.StartDate</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.insurance_companies.CompanyName)
-        </dt>
+        <dt>End Date:</dt>
+        <dd>@Model.EndDate</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.insurance_companies.CompanyName)
-        </dd>
+        <dt>Coverage Type:</dt>
+        <dd>@Model.CoverageType</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.vehicles.Brand)
-        </dt>
+        <dt>Vehicle ID:</dt>
+        <dd>@Model.VehicleID</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.vehicles.Brand)
-        </dd>
+        <dt>Customer ID:</dt>
+        <dd>@Model.CustomerID</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PolicyNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PolicyNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CoverageType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CoverageType)
-        </dd>
-
+        <dt>Insurance Company ID:</dt>
+        <dd>@Model.InsuranceCompanyID</dd>
     </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+    <form method="post" action="@Url.Action("Delete", "insurance_policies", new { id = Model.PolicyID })">
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Delete</button> |
+            <a href="@Url.Action("Index")">Back to List</a>
         </div>
-    }
+    </form>
 </div>

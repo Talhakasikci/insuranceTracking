@@ -1,0 +1,55 @@
+﻿@model IEnumerable<InsuranceTrancking.Models.vehicles>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <h2 class="mb-4">Vehicle Index</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "Create", "vehicles", null, new { @class = "btn btn-primary" })
+        </p>
+
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Customer Name</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                    <th>Plate</th>
+                    <th>Year</th>
+                    <th>Customer Claim Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@(item.customers != null ? item.customers.FirstName : "NULL")</td>
+
+                        <td>@item.Brand</td>
+                        <td>@item.Model</td>
+                        <td>@item.Plate</td>
+                        <td>@item.Year</td>
+                        <td>@item.CustomerClaimDate</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "vehicles", new { id = item.VehicleID })" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="@Url.Action("Details", "vehicles", new { id = item.VehicleID })" class="btn btn-sm btn-info">Details</a>
+                            <a href="@Url.Action("Delete", "vehicles", new { id = item.VehicleID })" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

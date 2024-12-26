@@ -135,10 +135,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\accident_reportsController.cs" />
     <Compile Include="Controllers\customersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\insurance_policiesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\vehiclesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +222,16 @@
     <Content Include="Views\insurance_policies\Details.cshtml" />
     <Content Include="Views\insurance_policies\Edit.cshtml" />
     <Content Include="Views\insurance_policies\Index.cshtml" />
+    <Content Include="Views\vehicles\Create.cshtml" />
+    <Content Include="Views\vehicles\Delete.cshtml" />
+    <Content Include="Views\vehicles\Details.cshtml" />
+    <Content Include="Views\vehicles\Edit.cshtml" />
+    <Content Include="Views\vehicles\Index.cshtml" />
+    <Content Include="Views\accident_reports\Create.cshtml" />
+    <Content Include="Views\accident_reports\Delete.cshtml" />
+    <Content Include="Views\accident_reports\Details.cshtml" />
+    <Content Include="Views\accident_reports\Edit.cshtml" />
+    <Content Include="Views\accident_reports\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

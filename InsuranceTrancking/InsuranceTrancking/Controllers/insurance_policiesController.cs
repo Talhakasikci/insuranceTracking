@@ -49,7 +49,7 @@ namespace InsuranceTrancking.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PolicyID,PolicyNumber,StartDate,EndDate,CoverageType,VehicleID,CustomerID,InsuranceCompanyID")] insurance_policies insurance_policies)
         {
             if (ModelState.IsValid)
@@ -87,7 +87,7 @@ namespace InsuranceTrancking.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PolicyID,PolicyNumber,StartDate,EndDate,CoverageType,VehicleID,CustomerID,InsuranceCompanyID")] insurance_policies insurance_policies)
         {
             if (ModelState.IsValid)
@@ -119,7 +119,7 @@ namespace InsuranceTrancking.Controllers
 
         // POST: insurance_policies/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             insurance_policies insurance_policies = db.insurance_policies.Find(id);

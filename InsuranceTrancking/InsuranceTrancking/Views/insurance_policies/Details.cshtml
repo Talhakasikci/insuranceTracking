@@ -1,74 +1,43 @@
-﻿@model InsuranceTrancking.Models.insurance_policies
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Policy Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <h2>Details</h2>
+        <h4>Insurance Policy</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3">Policy Number</dt>
+            <dd class="col-sm-9">@Model.PolicyNumber</dd>
 
-@{
-    ViewBag.Title = "Details";
-}
+            <dt class="col-sm-3">Start Date</dt>
+            <dd class="col-sm-9">@Model.StartDate</dd>
 
-<h2>Details</h2>
+            <dt class="col-sm-3">End Date</dt>
+            <dd class="col-sm-9">@Model.EndDate</dd>
 
-<div>
-    <h4>insurance_policies</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.customers.FirstName)
-        </dt>
+            <dt class="col-sm-3">Coverage Type</dt>
+            <dd class="col-sm-9">@Model.CoverageType</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.customers.FirstName)
-        </dd>
+            <dt class="col-sm-3">Vehicle ID</dt>
+            <dd class="col-sm-9">@Model.VehicleID</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.insurance_companies.CompanyName)
-        </dt>
+            <dt class="col-sm-3">Customer ID</dt>
+            <dd class="col-sm-9">@Model.CustomerID</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.insurance_companies.CompanyName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.vehicles.Brand)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.vehicles.Brand)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PolicyNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PolicyNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CoverageType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CoverageType)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.PolicyID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dt class="col-sm-3">Insurance Company ID</dt>
+            <dd class="col-sm-9">@Model.InsuranceCompanyID</dd>
+        </dl>
+        <p>
+            <a href="/insurance_policies/Edit/@Model.PolicyID" class="btn btn-warning">Edit</a>
+            <a href="/insurance_policies/Index" class="btn btn-secondary">Back to List</a>
+        </p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,85 +1,69 @@
-﻿@model InsuranceTrancking.Models.insurance_policies
+﻿<!DOCTYPE html>
+<html lang="en">
 
-@{
-    ViewBag.Title = "Edit";
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Insurance Policy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-<h2>Edit</h2>
+<body>
+    <div class="container my-5">
+        <h2>Edit Insurance Policy</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>insurance_policies</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.PolicyID)
+        <form action="/insurance_policies/Edit" method="post" class="needs-validation" novalidate>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PolicyNumber, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PolicyNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PolicyNumber, "", new { @class = "text-danger" })
+            <input type="hidden" name="PolicyID" value="@Model.PolicyID" />
+
+            <div class="mb-3">
+                <label for="PolicyNumber" class="form-label">Policy Number</label>
+                <input type="text" id="PolicyNumber" name="PolicyNumber" value="@Model.PolicyNumber" class="form-control" required />
+                <div class="invalid-feedback">Please provide a valid policy number.</div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            <div class="mb-3">
+                <label for="StartDate" class="form-label">Start Date</label>
+                <input type="date" id="StartDate" name="StartDate" value="@(Model.StartDate != DateTime.MinValue ? Model.StartDate.ToString("yyyy-MM-dd") : "")" class="form-control" required />
+                <div class="invalid-feedback">Please provide a valid start date.</div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            <div class="mb-3">
+                <label for="EndDate" class="form-label">End Date</label>
+                <input type="date" id="EndDate" name="EndDate" value="@(Model.EndDate != DateTime.MinValue ? Model.EndDate.ToString("yyyy-MM-dd") : "")" class="form-control" required />
+                <div class="invalid-feedback">Please provide a valid end date.</div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CoverageType, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CoverageType, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CoverageType, "", new { @class = "text-danger" })
+            <div class="mb-3">
+                <label for="CoverageType" class="form-label">Coverage Type</label>
+                <input type="text" id="CoverageType" name="CoverageType" value="@Model.CoverageType" class="form-control" required />
+                <div class="invalid-feedback">Please provide a valid coverage type.</div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.VehicleID, "VehicleID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("VehicleID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.VehicleID, "", new { @class = "text-danger" })
+            <div class="mb-3">
+                <label for="VehicleID" class="form-label">Vehicle ID</label>
+                <input type="number" id="VehicleID" name="VehicleID" value="@Model.VehicleID" class="form-control" required />
+                <div class="invalid-feedback">Please provide a valid vehicle ID.</div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CustomerID, "CustomerID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("CustomerID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CustomerID, "", new { @class = "text-danger" })
+            <div class="mb-3">
+                <label for="CustomerID" class="form-label">Customer ID</label>
+                <input type="number" id="CustomerID" name="CustomerID" value="@Model.CustomerID" class="form-control" required />
+                <div class="invalid-feedback">Please provide a valid customer ID.</div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.InsuranceCompanyID, "InsuranceCompanyID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("InsuranceCompanyID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.InsuranceCompanyID, "", new { @class = "text-danger" })
+            <div class="mb-3">
+                <label for="InsuranceCompanyID" class="form-label">Insurance Company ID</label>
+                <input type="number" id="InsuranceCompanyID" name="InsuranceCompanyID" value="@Model.InsuranceCompanyID" class="form-control" required />
+                <div class="invalid-feedback">Please provide a valid insurance company ID.</div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="/insurance_policies/Index" class="btn btn-secondary">Back to List</a>
+        </form>
     </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

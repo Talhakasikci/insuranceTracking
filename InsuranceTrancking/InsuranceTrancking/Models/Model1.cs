@@ -117,7 +117,13 @@ namespace InsuranceTrancking.Models
                 .HasMany(e => e.accident_reports)
                 .WithOptional(e => e.repair_shops)
                 .HasForeignKey(e => e.RepairShopID);
+            //modelBuilder.Entity<vehicles>()
+            //    .Property(e => e.VehicleID)
+            //    .IsUnicode(true);
 
+            modelBuilder.Entity<vehicles>()
+                .Property(e => e.Plate)
+                .IsUnicode(true);
             modelBuilder.Entity<vehicles>()
                 .Property(e => e.Brand)
                 .IsUnicode(false);

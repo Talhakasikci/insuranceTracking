@@ -40,13 +40,18 @@
             <!-- Vehicle Information -->
             <h3>Vehicle Information</h3>
             <div class="mb-3">
-                <label for="Brand" class="form-label">Brand</label>
-                <input type="text" id="Brand" name="Vehicles[0].Brand" class="form-control" required />
-                <div class="invalid-feedback">Please provide a vehicle brand.</div>
+                <label for="VehicleID" class="form-label">Vehicle ID</label>
+                <input type="number" id="VehicleID" name="Vehicles[0].VehicleID" class="form-control" required />
+                <div class="invalid-feedback">Please provide a vehicle ID.</div>
             </div>
             <div class="mb-3">
-                <label for="VehicleID" class="form-label">Vehicle ID</label>
-                <input type="text" id="VehicleID" name="Vehicles[0].vehicleID" class="form-control" required />
+                <label for="Plate" class="form-label">Plate</label>
+                <input type="text" id="Plate" name="Vehicles[0].Plate" class="form-control" required />
+                <div class="invalid-feedback">Please provide a vehicle plate.</div>
+            </div>
+            <div class="mb-3">
+                <label for="Brand" class="form-label">Brand</label>
+                <input type="text" id="Brand" name="Vehicles[0].Brand" class="form-control" required />
                 <div class="invalid-feedback">Please provide a vehicle brand.</div>
             </div>
             <div class="mb-3">

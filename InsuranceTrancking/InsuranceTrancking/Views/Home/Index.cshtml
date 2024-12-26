@@ -3,11 +3,37 @@
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+    <!-- Kaydırılabilir Resim Menüsü (Karusel) -->
+    <div id="carouselExampleAutoplaying" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <!-- Gösterge (Indicator) Ekleme -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://i.hizliresim.com/qhhpaca.png?_gl=1*1nt8zto*_ga*MjkwMDI4MTU0LjE3MzUyMzM4Njc.*_ga_M9ZRXYS2YN*MTczNTIzMzg2Ny4xLjEuMTczNTIzNzgyMS40Ny4wLjA." class="d-block w-100" alt="Resim 1">
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.hizliresim.com/2o2g6ug.png?_gl=1*15oi4jz*_ga*MjkwMDI4MTU0LjE3MzUyMzM4Njc.*_ga_M9ZRXYS2YN*MTczNTIzMzg2Ny4xLjEuMTczNTIzODAwMi40Ni4wLjA." class="d-block w-100" alt="Resim 2">
+            </div>
+            <div class="carousel-item">
+                <img src="https://i.hizliresim.com/2kjtnw6.png?_gl=1*x120hd*_ga*MjkwMDI4MTU0LjE3MzUyMzM4Njc.*_ga_M9ZRXYS2YN*MTczNTIzMzg2Ny4xLjEuMTczNTIzODAzMC4xOC4wLjA." class="d-block w-100" alt="Resim 3">
+            </div>
+        </div>
+
+        <!-- Karusel Kontrolleri (Önceki ve Sonraki) -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Önceki</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Sonraki</span>
+        </button>
+    </div>
 
     <div class="row">
         <section class="col-md-4" aria-labelledby="gettingStartedTitle">
@@ -31,3 +57,51 @@
         </section>
     </div>
 </main>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom CSS to style the carousel -->
+<style>
+    /* Karusel resimleri tam genişlikte ve yükseklikte olacak */
+    .carousel-item img {
+        object-fit: cover; /* Resmin kutuya sığmasını sağlar */
+        width: 100%; /* Tam genişlik */
+        height: 60vh; /* Yüksekliği ekranın %60'ı kadar ayarlar */
+    }
+
+    /* Gösterge (Indicator) düzenlemesi */
+    .carousel-indicators {
+        position: absolute;
+        bottom: 20px; /* Göstergeyi biraz yukarıda tutuyoruz */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10; /* Butonları resimlerin üstünde tutar */
+    }
+
+        /* Gösterge (Indicator) butonları */
+        .carousel-indicators button {
+            background-color: rgba(0, 0, 0, 0.7); /* Koyu renk */
+            border: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        .carousel-indicators .active {
+            background-color: #ffffff; /* Aktif gösterge için beyaz renk */
+        }
+
+    /* Karusel kontrol butonları (Önceki ve Sonraki) */
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: #808080; /* Koyu renk */
+    }
+
+    /* Karusel kontrol butonları üzerine geldiğinde renk değişikliği */
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        background-color: #808080;
+    }
+</style>

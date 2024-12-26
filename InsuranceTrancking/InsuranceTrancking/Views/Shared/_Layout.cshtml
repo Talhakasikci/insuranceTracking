@@ -1,34 +1,103 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - DOU Sigorta</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        /* 1. Div (Logo ve Marka) */
+        .brand-div {
+            background-color: #4b91c6; /* Açık mavi */
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Soldan hizalama */
+            /* Soldan biraz boşluk bırak */
+            height: 100px; /* Sabit yükseklik verildi */
+        }
+
+            .brand-div img {
+                height: 60px; /* Logonun yüksekliği */
+                margin-right: 15px;
+                margin-left: 260px;
+                /* Logo ile metin arasındaki boşluk */
+            }
+
+            .brand-div a {
+                margin: 0;
+                font-size: 2rem;
+                color: #333;
+                text-decoration: none;
+            }
+
+        /* 2. Div (Menü) */
+        .menu-div {
+            padding: 10px 20px;
+            margin-left: 260px;
+        }
+
+            .menu-div ul {
+                margin: 0;
+                padding: 0;
+                display: inline-flex; /* Menü elemanlarını yatayda hizalar */
+                list-style: none;
+            }
+
+            .menu-div .nav-item {
+                margin-right: 15px;
+            }
+
+            .menu-div .nav-link {
+                text-decoration: none;
+                font-weight: bold;
+                color: #333;
+            }
+
+                .menu-div .nav-link:hover {
+                    color: #1dd9ce; /* Açık mavi */
+                }
+
+        /* Footer */
+        footer {
+            background-color: #f8f9fa; /* Hafif gri */
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-        <div class="container">
-            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- 1. Div: Logo ve Marka -->
+    <div class="brand-div">
+        <a href="https://localhost:44349/home/index"><img src="https://i.hizliresim.com/mypwusf.png?_gl=1*1t9325v*_ga*MjkwMDI4MTU0LjE3MzUyMzM4Njc.*_ga_M9ZRXYS2YN*MTczNTIzMzg2Ny4xLjEuMTczNTIzNTcwMi42MC4wLjA." alt="DOU Sigorta Logo"></a>
+        <a href="https://localhost:44349/home/index">DOU SİGORTA</a>
+    </div>
+
+    <!-- 2. Div: Menü -->
+    <div class="menu-div">
+        <ul class="nav">
+            <li class="nav-item">
+                @Html.ActionLink("Customer", "Index", "customers", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Vehicle", "Index", "vehicles", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Accident Report", "Index", "accident_reports", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Insurance Policies", "Index", "insurance_policies", null, new { @class = "nav-link" })
+            </li>
+        </ul>
+    </div>
+
     <div class="container body-content">
         @RenderBody()
-        <hr />
+
+        <!-- Footer -->
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - DOU Sigorta</p>
         </footer>
     </div>
 

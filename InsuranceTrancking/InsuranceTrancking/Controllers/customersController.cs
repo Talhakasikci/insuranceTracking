@@ -56,6 +56,10 @@ namespace InsuranceTrancking.Controllers
 
             return View(customers);
         }
+        //public ActionResult CreateWithVehicle()
+        //{
+        //    return RedirectToAction("Index");
+        //}
         [HttpPost]
         public ActionResult CreateWithVehicle(customers customer, List<vehicles> vehicles)
         {
@@ -73,10 +77,12 @@ namespace InsuranceTrancking.Controllers
                 }
 
                 // Step 3: Save the vehicles
-                db.SaveChanges();
+              //  db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
+            ModelState.AddModelError("", "Please fill in all required fields.");
+
 
             return View(customer);  // If model is invalid, return the view
         }
