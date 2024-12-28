@@ -119,14 +119,64 @@ namespace InsuranceTrancking.Controllers
 
         // POST: vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            vehicles vehicles = db.vehicles.Find(id);
-            db.vehicles.Remove(vehicles);
-            db.SaveChanges();
+            using (var transaction = db.Database.BeginTransaction())
+            {
+                try
+                {
+                    // Find the vehicle
+                    vehicles vehicle = db.vehicles.Find(id);
+                    if (vehicle == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                    // Delete related accident reports linked to insurance policies
+                    var insurancePolicies = db.insurance_policies.Where(i => i.VehicleID == id).ToList();
+                    foreach (var policy in insurancePolicies)
+                    {
+                        var relatedAccidentReports = db.accident_reports.Where(ar => ar.PolicyID == policy.PolicyID).ToList();
+                        if (relatedAccidentReports.Any())
+                        {
+                            db.accident_reports.RemoveRange(relatedAccidentReports);
+                        }
+                    }
+
+                    // Delete related insurance policies
+                    if (insurancePolicies.Any())
+                    {
+                        db.insurance_policies.RemoveRange(insurancePolicies);
+                    }
+
+                    // Delete related accident reports directly linked to the vehicle
+                    var vehicleAccidentReports = db.accident_reports.Where(a => a.VehicleID == id).ToList();
+                    if (vehicleAccidentReports.Any())
+                    {
+                        db.accident_reports.RemoveRange(vehicleAccidentReports);
+                    }
+
+                    // Delete the vehicle
+                    db.vehicles.Remove(vehicle);
+
+                    // Save changes and commit transaction
+                    db.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    // Rollback transaction in case of error
+                    transaction.Rollback();
+                    // Log the error
+                    System.Diagnostics.Debug.WriteLine($"Error deleting vehicle with ID {id}: {ex.Message}");
+                    throw;
+                }
+            }
+
             return RedirectToAction("Index");
         }
+
+
 
         protected override void Dispose(bool disposing)
         {

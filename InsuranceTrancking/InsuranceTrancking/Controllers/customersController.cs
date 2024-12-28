@@ -61,7 +61,7 @@ namespace InsuranceTrancking.Controllers
         //    return RedirectToAction("Index");
         //}
         [HttpPost]
-        public ActionResult CreateWithVehicle(customers customer, List<vehicles> vehicles)
+        public ActionResult CreateWithVehicle(customers customer, vehicles vehicles, insurance_policies insurance_Policies)
         {
             if (ModelState.IsValid)
             {
@@ -70,11 +70,20 @@ namespace InsuranceTrancking.Controllers
                 db.SaveChanges();  // This will insert the customer and generate a CustomerID
 
                 // Step 2: Ensure vehicles are assigned to this customer
-                foreach (var vehicle in vehicles)
-                {
-                    vehicle.CustomerID = customer.CustomerID;  // Link vehicle to the newly created customer
-                    db.vehicles.Add(vehicle);
-                }
+                //foreach (var vehicle in vehicles)
+                //{
+                //    vehicle.CustomerID = customer.CustomerID;  // Link vehicle to the newly created customer
+                //    db.vehicles.Add(vehicle);
+                //}
+                vehicles.CustomerID = customer.CustomerID;
+                db.vehicles.Add(vehicles);
+                db.SaveChanges();
+
+                insurance_Policies.CustomerID = customer.CustomerID;
+                insurance_Policies.VehicleID = vehicles.VehicleID;
+                db.insurance_policies.Add(insurance_Policies);
+                db.SaveChanges();
+
 
                 // Step 3: Save the vehicles
               //  db.SaveChanges();

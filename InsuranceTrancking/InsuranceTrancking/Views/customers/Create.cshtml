@@ -39,36 +39,64 @@
 
             <!-- Vehicle Information -->
             <h3>Vehicle Information</h3>
-            <div class="mb-3">
+            <!--<div class="mb-3">
                 <label for="VehicleID" class="form-label">Vehicle ID</label>
-                <input type="number" id="VehicleID" name="Vehicles[0].VehicleID" class="form-control" required />
+                <input type="number" id="VehicleID" name="vehicles.VehicleID" class="form-control" required />
                 <div class="invalid-feedback">Please provide a vehicle ID.</div>
-            </div>
+            </div>-->
             <div class="mb-3">
                 <label for="Plate" class="form-label">Plate</label>
-                <input type="text" id="Plate" name="Vehicles[0].Plate" class="form-control" required />
+                <input type="text" id="Plate" name="vehicles.Plate" class="form-control" required />
                 <div class="invalid-feedback">Please provide a vehicle plate.</div>
             </div>
             <div class="mb-3">
                 <label for="Brand" class="form-label">Brand</label>
-                <input type="text" id="Brand" name="Vehicles[0].Brand" class="form-control" required />
+                <input type="text" id="Brand" name="vehicles.Brand" class="form-control" required />
                 <div class="invalid-feedback">Please provide a vehicle brand.</div>
             </div>
             <div class="mb-3">
                 <label for="Model" class="form-label">Model</label>
-                <input type="text" id="Model" name="Vehicles[0].Model" class="form-control" required />
+                <input type="text" id="Model" name="vehicles.Model" class="form-control" required />
                 <div class="invalid-feedback">Please provide a vehicle model.</div>
             </div>
             <div class="mb-3">
                 <label for="Year" class="form-label">Year</label>
-                <input type="number" id="Year" name="Vehicles[0].Year" class="form-control" required />
+                <input type="number" id="Year" name="vehicles.Year" class="form-control" required />
                 <div class="invalid-feedback">Please provide a vehicle year.</div>
             </div>
             <div class="mb-3">
                 <label for="CustomerClaimDate" class="form-label">Customer Claim Date</label>
-                <input type="date" id="CustomerClaimDate" name="Vehicles[0].CustomerClaimDate" class="form-control" required />
+                <input type="date" id="CustomerClaimDate" name="vehicles.CustomerClaimDate" class="form-control" required />
                 <div class="invalid-feedback">Please provide a claim date.</div>
             </div>
+            <!--adlfasdfjalsdfj-->
+            <h2>Policy Informations</h2>
+            <div class="mb-3">
+                <label for="PolicyNumber" class="form-label">Policy Number</label>
+                <input type="text" id="PolicyNumber" name="insurance_policies.PolicyNumber" class="form-control" required />
+                <div class="invalid-feedback">Please provide a Policy Number.</div>
+            </div>
+            <div class="mb-3">
+                <label for="CoverageType" class="form-label">Coverage Type</label>
+                <input type="text" id="CoverageType" name="insurance_policies.CoverageType" class="form-control" required />
+                <div class="invalid-feedback">Please provide a Coverage Type.</div>
+            </div>
+            <div class="mb-3">
+                <label for="InsuranceCompanyID" class="form-label">Insurance Company ID</label>
+                <input type="number" id="Insurance Company ID" name="insurance_policies.InsuranceCompanyID" class="form-control" required />
+                <div class="invalid-feedback">Please provide a Insurance Company ID.</div>
+            </div>
+            <div class="mb-3">
+                <label for="StartDate" class="form-label">Policy Start Date</label>
+                <input type="date" id="StartDate" name="insurance_policies.StartDate" class="form-control" required />
+                <div class="invalid-feedback">Please provide a Policy Start date.</div>
+            </div>
+            <div class="mb-3">
+                <label for="EndDate" class="form-label">Policy End Date</label>
+                <input type="date" id="EndDate" name="insurance_policies.EndDate" class="form-control" required />
+                <div class="invalid-feedback">Please provide a Policy End date.</div>
+            </div>
+
 
             <button type="submit" class="btn btn-primary">Create</button>
             <a href="/customers/Index" class="btn btn-secondary">Back to List</a>
